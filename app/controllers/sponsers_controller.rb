@@ -1,2 +1,0 @@
-class SponsersController < ApplicationController
-end

@@ -27,15 +27,6 @@ ActiveRecord::Schema.define(version: 2019_02_19_184305) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "coordinators", force: :cascade do |t|
-    t.string "email"
-    t.string "password"
-    t.string "organization"
-    t.string "logo", default: "http://getdrawings.com/img/generic-person-silhouette-17.png"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "credit_receipts", force: :cascade do |t|
     t.integer "user_id"
     t.integer "charity_id"
@@ -46,7 +37,7 @@ ActiveRecord::Schema.define(version: 2019_02_19_184305) do
 
   create_table "donations", force: :cascade do |t|
     t.integer "event_id"
-    t.integer "sponser_id"
+    t.integer "sponsor_id"
     t.integer "amount_per_volunteer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -60,7 +51,7 @@ ActiveRecord::Schema.define(version: 2019_02_19_184305) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sponsers", force: :cascade do |t|
+  create_table "spons0rs", force: :cascade do |t|
     t.string "email"
     t.string "password"
     t.string "first_name", default: "Anonymous Donor"

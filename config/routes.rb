@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :charities
   resources :credit_receipts
   resources :donations
-  resources :sponsers
+  resources :sponsors
   resources :confirms
   resources :events
   resources :users
