@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+puts "Start seeding data"
 User.create(email: "tonyjlum@gmail.com", password: "greentea", first_name: "Tony", last_name: "Lum")
 19.times do
   first_name = Faker::Name.first_name
@@ -22,16 +22,20 @@ Donation.create(event_id: 1, sponsor_id: 1, amount_per_volunteer: 100 )
 Donation.create(event_id: 1, sponsor_id: 2, amount_per_volunteer: 150 )
 
 
-10.times do |index|
+20.times do |index|
   current_user = User.find(index + 1)
   event = Event.find(1)
   donations = event.donations
   # sponsors = Sponsor.find(donation.sponsor_id)
   reduced_donations = donations.map{|s| s.amount_per_volunteer}.reduce(:+)
-  Confirm.create(user_id: current_user.id, event_id: event.id)
-  current_user.update(credit: current_user.credit + reduced_donations)
-  donations.each do |d|
-    sponsor = Sponsor.find(d.sponsor_id)
-    sponsor.update(credit: sponsor.credit - d.amount_per_volunteer, total_donations: sponsor.total_donations + d.amount_per_volunteer)
+  current_confirm = Confirm.create(user_id: current_user.id, event_id: event.id, attend: [true, false].sample)
+  if current_confirm.attend == true
+    current_user.update(credit: current_user.credit + reduced_donations)
+    donations.each do |d|
+      sponsor = Sponsor.find(d.sponsor_id)
+      sponsor.update(credit: sponsor.credit - d.amount_per_volunteer, total_donations: sponsor.total_donations + d.amount_per_volunteer)
+    end
   end
 end
+
+puts "Finished seeding Data"

@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2019_02_19_184305) do
   create_table "confirms", force: :cascade do |t|
     t.integer "user_id"
     t.integer "event_id"
+    t.boolean "attend", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
