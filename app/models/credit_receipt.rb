@@ -1,0 +1,2 @@
+class CreditReceipt < ApplicationRecord
+end

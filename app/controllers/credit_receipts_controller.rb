@@ -1,0 +1,2 @@
+class CreditReceiptsController < ApplicationController
+end
