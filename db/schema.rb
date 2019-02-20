@@ -46,12 +46,15 @@ ActiveRecord::Schema.define(version: 2019_02_19_184305) do
   create_table "events", force: :cascade do |t|
     t.integer "coordinator_id"
     t.datetime "datetime"
+    t.string "title"
+    t.integer "max_volunteers"
+    t.string "address"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "spons0rs", force: :cascade do |t|
+  create_table "sponsors", force: :cascade do |t|
     t.string "email"
     t.string "password"
     t.string "first_name", default: "Anonymous Donor"

@@ -1,6 +1,6 @@
 class CreateSponsors < ActiveRecord::Migration[5.2]
   def change
-    create_table :spons0rs do |t|
+    create_table :sponsors do |t|
       t.string  :email
       t.string  :password
       t.string  :first_name, :default => "Anonymous Donor"
