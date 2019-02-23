@@ -8,4 +8,5 @@ class SponsorsController < ApplicationController
     @sponsor = Sponsor.find(params[:id])
     render json: @sponsor
   end
+
 end

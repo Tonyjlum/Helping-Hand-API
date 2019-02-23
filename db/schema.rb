@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_02_19_184305) do
   create_table "donations", force: :cascade do |t|
     t.integer "event_id"
     t.integer "sponsor_id"
-    t.integer "amount_per_volunteer"
+    t.integer "amount_per_volunt`eer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 2019_02_19_184305) do
     t.integer "max_volunteers"
     t.string "address"
     t.string "description"
+    t.float "lat"
+    t.float "long"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

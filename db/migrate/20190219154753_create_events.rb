@@ -7,6 +7,8 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.integer :max_volunteers
       t.string :address
       t.string :description
+      t.float :lat
+      t.float :long
       t.timestamps
     end
   end

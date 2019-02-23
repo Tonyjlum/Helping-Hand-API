@@ -20,7 +20,7 @@ Sponsor.create(email: "MarkZuckerberg@facebook.com", password: "bluetea", first_
 Sponsor.create(email: "MichaelBloomberg@nyc.gov", password: "coffee", first_name: "Michael", last_name: "Bloomberg", credit: 40000)
 
 #setting Data for first Event
-Event.create(coordinator_id: 1, datetime: Faker::Time.backward(30, :afternoon), title: "Bowling Green Clean Up", description: "Park beautification project for Bowling Green in downtown Manhattan", max_volunteers: 20, address: "Broadway &, Whitehall St, New York, NY 10004")
+Event.create(coordinator_id: 1, datetime: Faker::Time.backward(30, :afternoon), title: "Bowling Green Clean Up", description: "Park beautification project for Bowling Green in downtown Manhattan", max_volunteers: 20, address: "Broadway &, Whitehall St, New York, NY 10004", lat: 40.704060, long: -74.013220 )
 Donation.create(event_id: 1, sponsor_id: 1, amount_per_volunteer: 100 )
 Donation.create(event_id: 1, sponsor_id: 2, amount_per_volunteer: 150 )
 
@@ -41,7 +41,7 @@ Donation.create(event_id: 1, sponsor_id: 2, amount_per_volunteer: 150 )
 end
 
 #setting Data for second Event
-Event.create(coordinator_id: 1, datetime: Faker::Time.backward(30, :afternoon), title: "Holy Apostles Soup Kitchen Volunteer", description: "Soup kitchen that will feed 2000 new yorkers today.", max_volunteers: 14, address: "296 9th Ave, New York, NY 10001")
+Event.create(coordinator_id: 1, datetime: Faker::Time.backward(30, :afternoon), title: "Holy Apostles Soup Kitchen Volunteer", description: "Soup kitchen that will feed 2000 new yorkers today.", max_volunteers: 14, address: "296 9th Ave, New York, NY 10001", lat: 40.758230, long: -73.992750)
 
 second_event_spoonsors = (1..Sponsor.all.count).to_a.shuffle
 
@@ -65,65 +65,76 @@ end
   end
 end
 
-#Mass faker
-10.times do |index|
-  Event.create(coordinator_id: (1..4).to_a.sample, datetime: Faker::Time.backward(30, :afternoon), title: " Tutoring#{index + 3}", description: "Tutoring new incoming Flatiron students", max_volunteers: (10..20).to_a.sample, address: "11 Broadway 2nd Floor, New York, NY 10004")
-end
+# #Mass faker
+# 10.times do |index|
+#   Event.create(coordinator_id: (1..4).to_a.sample, datetime: Faker::Time.backward(30, :afternoon), title: " Tutoring#{index + 3}", description: "Tutoring new incoming Flatiron students", max_volunteers: (10..20).to_a.sample, address: "11 Broadway 2nd Floor, New York, NY 10004")
+# end
+#
+# 25.times do
+#   event_id = nil
+#   event_sponsors = nil
+#   sponsor_id = nil
+#
+#   until sponsor_id
+#     event_id = (3..Event.all.count).to_a.sample
+#     event_sponsors = Event.find(event_id).donations.map{|d| d.sponsor_id}
+#     sponsor_id = ((1..Sponsor.all.count).to_a - event_sponsors).sample
+#   end
+#
+#   Donation.create(event_id: event_id, sponsor_id: sponsor_id, amount_per_volunteer: (25..200).to_a.sample)
+# end
+#
+# #not including event 1 and event 2
+# total_volunteers = Event.all.map{ |event| event.max_volunteers}[2..-1].reduce(:+) - 1
+#
+# #Seeding Confirms
+# total_volunteers.times do |index|
+#   event_id = nil
+#   event_users = nil
+#   user_id = nil
+#
+#   until user_id != [] && user_id != nil
+#     event_id = (3..Event.all.count).to_a.sample
+#     event_volunteers = Event.find(event_id).confirms.map{|c| c.user_id}
+#     user_id = ((1..User.all.count).to_a - event_volunteers).sample
+#   end
+#
+#   current_confirm = Confirm.create(user_id: user_id, event_id: event_id, attend: [true, true, false].sample)
+#   donations = Event.find(current_confirm.event_id).donations
+#
+#   #reduce donations cant be blank or else it fails
+#   reduced_donations = donations.map{|s| s.amount_per_volunteer}.reduce(0){|start, num| start + num }
+#
+#   if current_confirm.attend
+#     current_user = User.find(current_confirm.user_id)
+#     current_user.update(credit: current_user.credit + reduced_donations)
+#     donations.each do |d|
+#       sponsor = Sponsor.find(d.sponsor_id)
+#       sponsor.update(credit: sponsor.credit - d.amount_per_volunteer, total_donations: sponsor.total_donations + d.amount_per_volunteer)
+#     end
+#   end
+#
+# end
+#
+Event.create(
+  coordinator_id: 1,
+  datetime: Faker::Time.backward(30, :afternoon),
+  title: "Lavender Field on Governors Island",
+  description: "Community service: mural  painting project. Art skills not required",
+  max_volunteers: 23,
+  address: "Governors IslandNew York, NY 11231" ,
+  lat:40.6895,
+  long: -74.0168)
 
-25.times do
-  event_id = nil
-  event_sponsors = nil
-  sponsor_id = nil
-
-  until sponsor_id
-    event_id = (3..Event.all.count).to_a.sample
-    event_sponsors = Event.find(event_id).donations.map{|d| d.sponsor_id}
-    sponsor_id = ((1..Sponsor.all.count).to_a - event_sponsors).sample
-  end
-
-  Donation.create(event_id: event_id, sponsor_id: sponsor_id, amount_per_volunteer: (25..200).to_a.sample)
-end
-
-#not including event 1 and event 2
-total_volunteers = Event.all.map{ |event| event.max_volunteers}[2..-1].reduce(:+) - 1
-
-#Seeding Confirms
-count = 0
-total_volunteers.times do |index|
-  event_id = nil
-  event_users = nil
-  user_id = nil
-  puts user_id
-  puts index
-  until user_id != [] && user_id != nil
-    event_id = (3..Event.all.count).to_a.sample
-    event_volunteers = Event.find(event_id).confirms.map{|c| c.user_id}
-    user_id = ((1..User.all.count).to_a - event_volunteers).sample
-    p event_volunteers
-    puts "#{user_id} user_id"
-    count +=1
-    puts count
-    puts "~~~~~~~~"
-  end
-
-  current_confirm = Confirm.create(user_id: user_id, event_id: event_id, attend: [true, true, false].sample)
-  donations = Event.find(current_confirm.event_id).donations
-
-  #reduce donations cant be blank or else it fails
-  reduced_donations = donations.map{|s| s.amount_per_volunteer}.reduce(0){|start, num| start + num }
-
-  if current_confirm.attend
-    current_user = User.find(current_confirm.user_id)
-    current_user.update(credit: current_user.credit + reduced_donations)
-    donations.each do |d|
-      sponsor = Sponsor.find(d.sponsor_id)
-      sponsor.update(credit: sponsor.credit - d.amount_per_volunteer, total_donations: sponsor.total_donations + d.amount_per_volunteer)
-    end
-  end
-
-end
-
-
+Event.create(
+  coordinator_id: 1,
+  datetime: Faker::Time.backward(30, :afternoon),
+  title: "Animal Care Centers of NYC",
+  description: "Come down to the ACC to help give our little creatures a bath, maybe even adopt one of your own",
+  max_volunteers: 14,
+  address:"110 Wall St #2, New York, NY 10005",
+  lat:40.693345,
+  long:-74.0310061)
 
 
 
