@@ -133,9 +133,8 @@ Event.create(
   description: "Come down to the ACC to help give our little creatures a bath, maybe even adopt one of your own",
   max_volunteers: 14,
   address:"110 Wall St #2, New York, NY 10005",
-  lat:40.693345,
-  long:-74.0310061)
-
+  lat:40.704910,
+  long:-74.006350)
 
 
 puts "Finished seeding Data"
