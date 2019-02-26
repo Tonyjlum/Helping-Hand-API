@@ -5,8 +5,20 @@ class SponsorsController < ApplicationController
   end
 
   def show
-    @sponsor = Sponsor.find(params[:id])
-    render json: @sponsor
+    @sponsors = Sponsor.find(params[:id])
+    render json: @sponsors
   end
+
+  def create
+    @sponsors = Sponsor.create(sponsor_params)
+    render json: @sponsors
+  end
+
+  private
+
+  def sponsor_params
+    params.require(:sponsor).permit(:email, :password, :first_name, :last_name)
+  end
+
 
 end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users
 
   post "/login", to:"autho#login"
+  post "/users/login", to:"users#login"
   get "/current_user", to:"auth#get_user_from_token"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

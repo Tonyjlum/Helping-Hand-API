@@ -1,5 +1,9 @@
 class AuthController < ApplicationController
+  #fix for user and sponsor
   def login
+    byebug
+
+
     @user = User.find_by(username: params[:username])
 
     if @user && @user.authenticate(params[:password])
