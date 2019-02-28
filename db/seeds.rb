@@ -8,7 +8,9 @@
 puts "Start seeding data"
 User.create(email: "tonyjlum@gmail.com", password: "greentea", first_name: "Tony", last_name: "Lum")
 
-99.times do
+User.create(email: "123", password: "123", first_name: "Test", last_name: "Subject")
+
+28.times do
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
   User.create(email: Faker::Internet.email(first_name + last_name), first_name: first_name, last_name: last_name  )
@@ -64,6 +66,9 @@ end
     end
   end
 end
+
+Event.create(coordinator_id: 2, datetime: Faker::Time.backward(30, :afternoon), title:"It's My Park at Battery Park", description:"This It's My Park season, volunteer with Battery Park Volunteers to clean and mulch garden beds at Battery Park. We look forward to cleaning up the park with you!", max_volunteers: 30, lat: 40.705508, long: -74.018312, address: "Battery Park, New York, 10024" )
+Confirm.create(user_id: 2, event_id: 4)
 
 # #Mass faker
 # 10.times do |index|
@@ -125,6 +130,7 @@ Event.create(
   address: "Governors IslandNew York, NY 11231" ,
   lat:40.6895,
   long: -74.0168)
+Confirm.create(user_id: 1, event_id: 4)
 
 Event.create(
   coordinator_id: 1,
@@ -135,6 +141,6 @@ Event.create(
   address:"110 Wall St #2, New York, NY 10005",
   lat:40.704910,
   long:-74.006350)
-
+Confirm.create(user_id: 1, event_id: 5)
 
 puts "Finished seeding Data"

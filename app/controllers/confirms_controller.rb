@@ -7,7 +7,15 @@ class ConfirmsController < ApplicationController
 
   def create
     @confirm = Confirm.create(confirm_params)
-    render json: @confirm
+    @event = @confirm.event
+    render json: {confirm: @confirm, event: @event}
+  end
+
+  def destroy
+    @confirm = Confirm.find(params[:id])
+    @confirm_id = @confirm.id
+    @confirm.delete
+    render json: {destroyed_confirm_id: @confirm.id}
   end
 
   private

@@ -15,12 +15,17 @@ class UsersController < ApplicationController
     render json: @user
   end
 
+  def user_events
+    @user_events = User.find(user_params["id"]).events
+    render json: @user_events
+  end
+
   def login
     @user = User.find_by(email: user_params["email"], password: user_params["password"])
     if @user
       render json: @user
     else
-      return null
+      render json: {id: 0, errors: "Incorrect email or password. Please try again."}
     end
 
   end
