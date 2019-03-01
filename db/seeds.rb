@@ -141,6 +141,5 @@ Event.create(
   address:"110 Wall St #2, New York, NY 10005",
   lat:40.704910,
   long:-74.006350)
-Confirm.create(user_id: 1, event_id: 5)
 
 puts "Finished seeding Data"

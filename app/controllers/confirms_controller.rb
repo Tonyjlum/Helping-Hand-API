@@ -14,7 +14,7 @@ class ConfirmsController < ApplicationController
   def destroy
     @confirm = Confirm.find(params[:id])
     @confirm_id = @confirm.id
-    @confirm.delete
+    @confirm.destroy
     render json: {destroyed_confirm_id: @confirm.id}
   end
 
