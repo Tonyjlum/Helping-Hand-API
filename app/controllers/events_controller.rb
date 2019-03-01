@@ -12,7 +12,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.create(event_params)
-    Confirm.create(user_id: event_params[:coordinator_id], event_id: @event.id)
+    @confirm = Confirm.create(user_id: event_params[:coordinator_id], event_id: @event.id)
     render json: @event
   end
 
