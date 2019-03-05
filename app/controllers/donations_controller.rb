@@ -3,4 +3,14 @@ class DonationsController < ApplicationController
     @donations = Donation.all
     render json: @donations
   end
+
+  def create
+    @donation = Donation.create(donations_parmas)
+    render json: @donation
+  end
+
+  private
+  def donations_parmas
+    params.require(:donation).permit(:event_id, :sponsor_id, :amount_per_volunteer)
+  end
 end

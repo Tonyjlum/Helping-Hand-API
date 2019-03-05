@@ -142,4 +142,6 @@ Event.create(
   lat:40.704910,
   long:-74.006350)
 
+Sponsor.create(email: "m", password: "m", first_name: "Dolla", last_name: "Bills", credit: 2000000)
+
 puts "Finished seeding Data"
