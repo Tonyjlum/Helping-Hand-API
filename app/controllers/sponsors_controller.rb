@@ -14,6 +14,18 @@ class SponsorsController < ApplicationController
     render json: @sponsors
   end
 
+  def login
+    @sponsor = Sponsor.find_by(email: sponsor_params["email"], password: sponsor_params["password"])
+    if @sponsor
+      render json: @sponsor
+    else
+      render json: {id: 0, errors: "Incorrect email or password. Please try again."}
+    end
+  end
+
+
+
+
   private
 
   def sponsor_params
