@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     if @user
       render json: @user
     else
-      render json: {id: 0, errors: "Incorrect email or password. Please try again."}
+      render json: {id: 0, errors: "Incorrect email or password. Please try again. From User"}
     end
 
   end

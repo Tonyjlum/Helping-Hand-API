@@ -19,7 +19,7 @@ class SponsorsController < ApplicationController
     if @sponsor
       render json: @sponsor
     else
-      render json: {id: 0, errors: "Incorrect email or password. Please try again."}
+      render json: {id: 0, errors: "Incorrect email or password. Please try again. From Sponsor"}
     end
   end
 
