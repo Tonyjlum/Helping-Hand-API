@@ -6,6 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "Start seeding data"
+User.destroy_all
+Sponsor.destroy_all
+Event.destroy_all
+Donation.destroy_all
+Confirm.destroy_all
+
 User.create(email: "tonyjlum@gmail.com", password: "greentea", first_name: "Tony", last_name: "Lum")
 
 User.create(email: "123", password: "123", first_name: "Test", last_name: "Subject")
