@@ -42,13 +42,13 @@ Once the server is started, you will have access to Users, Sponsors, Events, Don
   confirm_event_info: [
     {
       confirm: {
-      id: 1,
-      user_id: 1,
-      event_id: 1,
-      attend: false,
-      created_at: 2019-03-25T19:43:01.003Z,
-      updated_at: 2019-03-25T19:43:01.003Z
-    },
+        id: 1,
+        user_id: 1,
+        event_id: 1,
+        attend: false,
+        created_at: 2019-03-25T19:43:01.003Z,
+        updated_at: 2019-03-25T19:43:01.003Z
+      },
       event: {
         id: 1,
         coordinator_id: 1,
@@ -84,9 +84,9 @@ Once the server is started, you will have access to Users, Sponsors, Events, Don
         long: -73.99275,
         created_at: 2019-03-25T19:43:01.224Z,
         updated_at: 2019-03-25T19:43:01.224Z
-        }
-      },
-      {
+      }
+    },
+    {
       confirm: {
         id: 41,
         user_id: 1,
