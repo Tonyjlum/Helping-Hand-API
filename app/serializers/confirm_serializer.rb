@@ -9,6 +9,4 @@ class ConfirmSerializer < ActiveModel::Serializer
     object.user.email
   end
 
-
-
 end

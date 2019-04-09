@@ -3,6 +3,11 @@ class DonationsController < ApplicationController
     @donations = Donation.all
     render json: @donations
   end
+  def show
+
+    @donation = Donation.find(params[:id])
+    render json: @donation
+  end
 
   def create
     @donation = Donation.create(donations_parmas)
